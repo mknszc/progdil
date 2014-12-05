@@ -1,47 +1,61 @@
-import Foundation
-
-var has: Dictionary<String, Dictionary<String, Array<String>>> = [
-    "tr" : [
-        "isim" : [
-            "Ali",
-            "Veli"
+class RandomName {
+    var language: String
+    var lenght: Int
+    var count: Int = 0
+    var array: Array<String> = []
+    var has: Dictionary<String, Dictionary<String, Array<String>>> = [
+        "tr" : [
+            "name" : [
+                "Ali",
+                "Veli",
+            ],
+            "adjective" : [
+                "iyi",
+                "kötü",
+                "güzel"
+            ]
         ],
-        "sıfat" : [
-            "iyi",
-            "kötü",
-            "güzel"
-        ]
-    ],
-    "en" : [
-        "name" : [
-            "Jack",
-            "Tom"
-        ],
-        "adjective" : [
-            "good",
-            "bad",
-            
+        "en" : [
+            "name" : [
+                "Jack",
+                "Tom"
+            ],
+            "adjective" : [
+                "good",
+                "bad",
+            ]
         ]
     ]
-]
-var dizi = [""]
-let arrayName = has["tr"]!["sıfat"]!
-let arrayAddjetive = has["tr"]!["isim"]!
-let dictionaryLenght = (arrayName.count)*(arrayAddjetive.count)
-func join(s1: String, s2: String, joiner: String = " ") -> String {
-    return s1 + joiner + s2
-}
-extension Array {
-    func randomItem() -> Int {
-        let index = Int(arc4random_uniform(UInt32(self.count)))
+    init(_ language: String = "tr" ,_ lenght: Int = 1 ) {
+        self.language = language
+        self.lenght = lenght
+    
+    }
+    func arrayName() ->Array<String> {
+        return has[self.language]!["name"]!
+    
+    }
+    func arrayAdjective() ->Array<String> {
+        return has[self.language]!["adjective"]!
+    
+    }
+    func randomItem(count:Int) -> Int {
+        let index = Int(arc4random_uniform(UInt32(count)))
         return index
+    
     }
-}
-while (dizi.count <= dictionaryLenght) {
-    let a = join((arrayName[arrayName.randomItem()]), arrayAddjetive[arrayAddjetive.randomItem()], joiner: " ")    
-    if (contains(dizi, a) == false){
-        dizi.append(a)
+    func join()->Array<String> {
         
+        let k = arrayName().count
+        let j = arrayAdjective().count
+        for var i = 0; array.count < lenght; i++ {
+            var c = arrayAdjective()[randomItem(j)] + " " + arrayName()[randomItem(k)]
+            if (contains(array, c) == false){
+                array.append(c)
+            }
+        }
+       
+        return array
+         
     }
 }
-
