@@ -1,39 +1,33 @@
 func ReplaceUnderscoreWithSpace(myString:String) -> String {
     var startIndex = 0
     var endIndex = 0
-    var array = [""]
-    var newString = ""
-    for character in myString {
-        array.append(String(character))
-        
-    }
-    for var index = 1; index < array.count; ++index {
-        if (array[index] != "_") {
-            startIndex = index
+    var array = Array(myString)
+    for var i = 0; i < array.count; ++i {
+        if (array[i] != "_") {
+            startIndex = i
             break
             
         }
         
     }
-    for var index = 0; index < array.count; ++index {
-        if (array[index] != "_") {
-            endIndex = index
+    for var j = 0; j < array.count; ++j {
+        if (array[j] != "_") {
+            endIndex = j
             
         }
         
     }
-    for var index = startIndex; index < endIndex; ++index {
-        if (array[index] == "_") {
-            array[index] = " "
+    for var k = startIndex; k < endIndex; ++k {
+        if (array[k] == "_") {
+            array[k] = " "
             
         }
         
     }
-    for var index = 0; index < array.count; ++index {
-        newString += array[index]
-        
-    }
+    var newString = String(array)
     return newString
     
 }
-println(ReplaceUnderscoreWithSpace("__foo___bar__"))
+
+var object = ReplaceUnderscoreWithSpace("__foo_bar__")
+println(object)
