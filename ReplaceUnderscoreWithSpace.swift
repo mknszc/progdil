@@ -26,15 +26,4 @@ func ReplaceUnderscoreWithSpace(myString:String) -> String {
 
 println(ReplaceUnderscoreWithSpace("__foo_bar__"))
             
-        }
-        
-    }
-    for var index = 0; index < array.count; ++index {
-        newString += array[index]
-        
-    }
-    return newString
-    
-}
-var myString = "foo_bar"
-ReplaceUnderscoreWithSpace()
+
