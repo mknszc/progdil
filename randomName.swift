@@ -139,7 +139,7 @@ class RandomName {
         let k = arrayName().count
         let j = arrayAdjective().count
         if (lenght <= j*k){
-            for var i = 0; array.count < lenght; i++ {
+             while array.count < lenght {
                 var c = arrayAdjective()[randomItem(j)] + " " + arrayName()[randomItem(k)]
                 if (contains(array, c) == false){
                     array.append(c)
