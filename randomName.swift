@@ -124,33 +124,34 @@ class RandomName {
     init(_ language: String = "tr" ,_ lenght: Int = 1 ) {
         self.language = language
         self.lenght = lenght
-    
     }
     func arrayName() ->Array<String> {
         return has[self.language]!["name"]!
-    
     }
     func arrayAdjective() ->Array<String> {
         return has[self.language]!["adjective"]!
-    
     }
     func randomItem(count:Int) -> Int {
         let index = Int(arc4random_uniform(UInt32(count)))
         return index
-    
     }
-    func join()->Array<String> {
-        
+    func join() {
         let k = arrayName().count
         let j = arrayAdjective().count
-        for var i = 0; array.count < lenght; i++ {
-            var c = arrayAdjective()[randomItem(j)] + " " + arrayName()[randomItem(k)]
-            if (contains(array, c) == false){
-                array.append(c)
+        if (lenght <= j*k){
+            for var i = 0; array.count < lenght; i++ {
+                var c = arrayAdjective()[randomItem(j)] + " " + arrayName()[randomItem(k)]
+                if (contains(array, c) == false){
+                    array.append(c)
+                }
             }
         }
-       
-        return array
+        for s in array {
+            println(s)
+        }
          
     }
 }
+
+var newObject = RandomName()
+println(newObject.join())
