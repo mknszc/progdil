@@ -1,8 +1,9 @@
-class ReplaceUnderScoreWithSpace {
+#!/usr/bin/env xcrun swift -i
+import Foundation
+class ReplaceUnderscoreWithSpace {
     let myString: String
     init(_ myString: String) {
         self.myString = myString
-        
     }
     func replaceUnderscoreWithSpace() -> String {
         var startIndex = 0
@@ -27,7 +28,10 @@ class ReplaceUnderScoreWithSpace {
         return String(array)
     }
 }
-
-var newObject = ReplaceUnderScoreWithSpace("__foo__bar__")
-println(newObject.replaceUnderscoreWithSpace())
-
+if Int(C_ARGC)-1 > 0 {
+    for i in 1 ..< Int(C_ARGC) {
+        let str = String.fromCString(C_ARGV[i])!
+        let newObject = ReplaceUnderScoreWithSpace(str)
+        println(newObject.replaceUnderscoreWithSpace())
+    }
+}
