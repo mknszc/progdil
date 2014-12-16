@@ -1,9 +1,11 @@
+import Foundation
+import Darwin
 class RandomName {
-    var language: String
-    var lenght: Int
+    let language: String
+    let lenght: Int
     var count: Int = 0
     var array: Array<String> = []
-    var has: Dictionary<String, Dictionary<String, Array<String>>> = [
+    let has: Dictionary<String, Dictionary<String, Array<String>>> = [
         "tr" : [
             "name" : [
 		"aslan",
@@ -122,7 +124,7 @@ class RandomName {
         ]
     ]
     init(_ language: String = "tr" ,_ lenght: Int = 1 ) {
-        self.language = language
+    	self.language = language
         self.lenght = lenght
     }
     func arrayName() ->Array<String> {
@@ -149,9 +151,20 @@ class RandomName {
         for s in array {
             println(s)
         }
-         
-    }
+    }	
 }
-
-var newObject = RandomName()
-println(newObject.join())
+let arguments = Process.arguments
+func help() {
+    println("Usage: \(arguments[0].lastPathComponent) arguments(2)")
+    exit(-1)
+}
+if (arguments.count - 1 == 2) {
+    let newObject = RandomName(arguments[1],((arguments[2]).toInt())!)
+    println(newObject.join())
+}
+else if(arguments.count - 1 == 0) {
+    let newObject = RandomName()
+    println(newObject.join())
+}
+else { help() }
+exit(0)
