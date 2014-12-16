@@ -1,5 +1,7 @@
+#!/usr/bin/env xcrun swift -i
 import Foundation
 import Darwin
+
 class RandomName {
     let language: String
     let lenght: Int
@@ -123,20 +125,25 @@ class RandomName {
             ]
         ]
     ]
+    
     init(_ language: String = "tr" ,_ lenght: Int = 1 ) {
     	self.language = language
         self.lenght = lenght
     }
+    
     func arrayName() ->Array<String> {
         return has[self.language]!["name"]!
     }
+    
     func arrayAdjective() ->Array<String> {
         return has[self.language]!["adjective"]!
     }
+    
     func randomItem(count:Int) -> Int {
         let index = Int(arc4random_uniform(UInt32(count)))
         return index
     }
+    
     func join() {
         let k = arrayName().count
         let j = arrayAdjective().count
@@ -153,11 +160,14 @@ class RandomName {
         }
     }	
 }
+
 let arguments = Process.arguments
+
 func help() {
     println("Usage: \(arguments[0].lastPathComponent) arguments(2)")
     exit(-1)
 }
+
 if (arguments.count - 1 == 2) {
     let newObject = RandomName(arguments[1],((arguments[2]).toInt())!)
     println(newObject.join())
