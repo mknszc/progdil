@@ -126,7 +126,7 @@ class RandomName {
         ]
     ]
     
-    init(_ language: String = "tr" ,_ lenght: Int = 1 ) {
+    init(_ language: String = "tr" ,_ lenght: Int = 1) {
     	self.language = language
         self.lenght = lenght
     }
@@ -147,10 +147,10 @@ class RandomName {
     func join() {
         let k = arrayName().count
         let j = arrayAdjective().count
-        if (lenght <= j*k){
+        if (lenght <= j*k) {
              while array.count < lenght {
                 var c = arrayAdjective()[randomItem(j)] + " " + arrayName()[randomItem(k)]
-                if (contains(array, c) == false){
+                if (contains(array, c) == false) {
                     array.append(c)
                 }
             }
